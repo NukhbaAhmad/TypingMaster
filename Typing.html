@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+    <!-- TITLE -->
+    <link rel="icon" href="Images/icontyping.png" class="img-fluid" type="image/x-icon">
+    <title>Typing Master</title>
+
+    <!-- CSS FILE LINK -->
+    <link rel="stylesheet" href="Typing.css">
+
+    <!-- FONTAWSOME ICONS -->
+    <script src="https://kit.fontawesome.com/1f4ff04947.js" crossorigin="anonymous"></script>
+
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+    <!-- Used CDN -> to get Jquery Library -> Rquired for toastr js Library  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+
+    <!-- Toastr js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Main Container -->
+
+    <div class="container-fluid">
+        <!-- ROW -->
+        <div class="row">
+            <!-- COL-1 -->
+            <div class="col-lg-6 m-lg-auto col-12">
+
+
+                <!-- FORM -->
+                <div id="Form">
+                    <!-- Settings -->
+                    <div class="Settings">Settings</div>
+
+                    <!-- Option Selection Box -->
+                    <div class="SelectionBox mt-5">
+
+                        <!--LEVEL  -->
+                        <div class="LevelSelection mt-5">
+
+                            <label class="OptionSelectionLabel levelLavel" for="LevelSelectionOptions">Level:</label>
+
+                            <!--EASY  -->
+                            <div class="form-check form-check-inline">
+                                <input class="SelectedRadio" type="radio" name="LevelTypeSelection" id="Easy"
+                                    value="Easy" />
+                                <label class="form-check-label" for="Easy">Easy</label>
+                            </div>
+
+                            <!-- Medium -->
+                            <div class="form-check form-check-inline">
+                                <input class="SelectedRadio" type="radio" name="LevelTypeSelection" id="Medium"
+                                    value="Medium" />
+                                <label class="form-check-label" for="Medium">Medium</label>
+                            </div>
+
+                            <!-- Hard -->
+                            <div class="form-check form-check-inline">
+                                <input class="SelectedRadio" type="radio" name="LevelTypeSelection" id="Hard"
+                                    value="Hard" />
+                                <label class="form-check-label" for="Hard">Hard</label>
+                            </div>
+                        </div>
+                        <p id="ErrorLevelSelection" class="ErrorForm" style="display:none"><span><small>Kindly Select
+                                    Level</small></span></p>
+                        <!-- END LEVEL -->
+
+
+                        <!-- Timing -->
+                        <div class="LevelSelection mt-5">
+                            <div class="input-group">
+                                <div class="input-group-prepend ">
+                                    <!-- Label Time -->
+                                    <label class="OptionSelectionLabel" for="PracticeTypeSelection">Time: </label>
+                                </div>
+                                <!-- Input for Time -->
+                                <input type="number" onclick="RemoveTimeError()" id="TimeValue"
+                                    placeholder="Enter Time in Minutes">
+                            </div>
+
+                        </div>
+                        <p id="ErrorTimeSelection" class="ErrorForm" style="display:none"><span><small>Time must be
+                                    between 1 and 20 minutes.</small></span></p>
+                        <!-- End Timing -->
+
+
+                        <!-- PracticeType -->
+                        <div class="LevelSelection mt-5">
+                            <div class="input-group">
+                                <!-- Lavel Select -->
+                                <div class="input-group-prepend ">
+                                    <label class="OptionSelectionLabel" for="PracticeTypeSelection">Select Type:</label>
+                                </div>
+                                <!-- Options For selection -->
+                                <select class="custom-select TypeOptionChoiceBox" id="PracticeTypeSelection">
+                                    <option value="" id="SelectPracticeType" selected>Select Practice Type</option>
+                                    <option value="Paragraph" id="Paragraph">Paragraph</option>
+                                    <option value="RandomWrods" id="RandomWrods">Random Words</option>
+                                    <option value="Essay" id="Essay">Essay</option>
+                                    <option value="Alphanumeric" id="Alphanumeric">Alphanumeric</option>
+                             
+                                </select>
+                            </div>
+                        </div>
+                        <p id="ErrorTypeSelection" class="ErrorForm" style="display:none"><span><small>Please Select
+                                    Valid Type</small></span></p>
+                        <!-- End PracticeType -->
+
+                        <!-- START -->
+                        <div class="m-auto w-50">
+                            <button type="submit" class="btn" id="StartButton">Start</button>
+                        </div>
+                        <!-- End Start Button -->
+
+                    </div>
+                    <!-- End Option Selection Box  -->
+
+                </div>
+                <!-- End Form box -->
+
+
+                <!-- TEST  -->
+                <div id="TestBox" style="display:none">
+                    <!-- Container for content -->
+                    <div id="ParagraphFetched" class="mt-4">
+                        <p id="TypingTest"></p>
+
+                    </div>
+                    <!-- End Container for content -->
+                </div>
+                <!-- End Testing -->
+
+
+
+                <!-- TIME AND SUBMIT -->
+                <div id="SubmitTimeCounterBox">
+                    <!-- Time -->
+                    <div id="Timebox" style="display:none;width: 20%;">
+                        <p id="Timer" title="Time">00:00</p>
+                    </div>
+                    <!-- Submit button -->
+                    <div id="SubmitButtonBox" style="display:none;">
+                        <button type="submit" class="SubmitButton" onclick="ReportResultDisplay()"
+                            id="Submit">Submit</button>
+                    </div>
+
+                </div>
+                <!-- End Submit Button -->
+
+
+            </div>
+            <!-- End COL-1 ROW-1 -->
+        </div>
+        <!-- End ROW-1  -->
+
+
+
+        <!-- ROW-2 -->
+        <div class="row">
+            <!-- COL -->
+            <div class="col-12 col-lg-6 m-auto">
+                <!-- FINALRESULTDISPLAY -->
+                <div id="DetailsResult" class="mt-4" style="display:none">
+                    <!-- Table -->
+                    <table class="table table-responsive">
+                        <!-- Table Body Starts -->
+                        <tbody>
+                            <!-- Headings -->
+                            <tr>
+                                <th scope="col" class="Result">Practice Type</th>
+                                <th scope="col" class="Result">Total Characters</th>  
+                                <th scope="col" class="Result">Total Time</th>
+                                <th scope="col" class="Result">Accuracy</th>
+                            </tr>
+                            <!-- Result -->
+                            <tr style="border-bottom: 2px solid rgb(21, 195, 154);">
+                                <td id="PracticeType"></td>
+                                <td id="TotalCharacters"></td>
+                                <td id="Total Time"></td> 
+                                <td id="Accuracy"></td>
+                            </tr>
+                            <!-- Heading -->
+                            <tr>
+                                <th scope="col" class="Result">Missed Characters</th>
+                                <th scope="col" class="Result">Correct</th>
+                                <th scope="col" class="Result">InCorrect</th>
+                                <th scope="col" class="Result">Time Taken</th>
+                            </tr>
+                            <!-- Result  -->
+                            <tr>
+                                <td id="MissedCharacters"></td>
+                                <td id="Correct"></td>
+                                <td id="InCorrect"></td>
+                                <td id="Time Taken"></td>
+                            </tr>
+                        </tbody>
+                        <!-- End Table Body -->
+                    </table>
+                    <!-- End Table -->
+                </div>
+                <!-- END TABLE Container/div -->
+            </div>
+            <!-- END COL-1 ROW-2 -->
+        </div>
+        <!-- End Row-2 -->
+
+       
+    </div>
+    <!-- End Main Container -->
+
+
+    <!-- JS -->
+
+    <script src="Typing.js"></script>
+    <!-- <scrip src="Balloon.js"></scrip> -->
+
+
+</body>
+
+</html>
